@@ -33,5 +33,12 @@ zbctl --insecure deploy resource example/pull-request-notification.bpmn
 
 
 ```bash
-curl -XPOST -H 'Content-Type: application/json' localhost:8080/inbound/GITHUB_INBOUND  -d '{}'
+# webhook that activates
+curl -XPOST -H 'Content-Type: application/json' -H "X-Hub-Signature: secrets.GITHUB_INBOUND_SECRET" localhost:8080/inbound/GITHUB_INBOUND  --data @example/webhook-payload-activates.json
+
+# webhook without secret
+curl -XPOST -H 'Content-Type: application/json' localhost:8080/inbound/GITHUB_INBOUND  --data @example/webhook-payload-activates.json
+
+# webhook that is ignored (wrong type)
+curl -XPOST -H 'Content-Type: application/json' -H "X-Hub-Signature: secrets.GITHUB_INBOUND_SECRET" localhost:8080/inbound/GITHUB_INBOUND  --data @example/webhook-payload-ignored.json
 ```
