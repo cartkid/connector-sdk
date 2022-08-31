@@ -20,4 +20,4 @@ jobs:
         java-version: ${{ matrix.java-version }}
         cache: 'maven'
     - name: Build
-      run: mvn verify -PcheckFormat
+      run: mvn -B verify -PcheckFormat
