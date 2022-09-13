@@ -15,7 +15,7 @@
   <description>Inbound Connector Prototype</description>
   <properties>
     <java.version>17</java.version>
-    <version.zeebe>8.1.0-SNAPSHOT</version.zeebe>
+    <version.zeebe>8.1.0-alpha5</version.zeebe>
     <version.feel-engine>1.15.1</version.feel-engine>
     <version.jackson-module-scala_2.13>2.13.3</version.jackson-module-scala_2.13>
   </properties>
