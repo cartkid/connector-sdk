@@ -25,7 +25,7 @@ jobs:
       run: mvn verify -PcheckFormat
 
     - name: Lint Job Worker Runtime Dockerfile
-      uses: hadolint/hadolint-action@v2.0.0
+      uses: hadolint/hadolint-action@v2.1.0
       with:
         dockerfile: ./runtime-job-worker/Dockerfile
 
