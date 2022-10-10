@@ -29,7 +29,7 @@ Include the [connector core](./core) via maven:
 <dependency>
   <groupId>io.camunda.connector</groupId>
   <artifactId>connector-core</artifactId>
-  <version>0.2.0</version>
+  <version>0.2.2</version>
 </dependency>
 ```
 
@@ -73,7 +73,7 @@ If you want to validate your Connector input, the SDK provides a default impleme
 <dependency>
   <groupId>io.camunda.connector</groupId>
   <artifactId>connector-validation</artifactId>
-  <version>0.2.0</version>
+  <version>0.2.2</version>
 </dependency>
 ```
 
