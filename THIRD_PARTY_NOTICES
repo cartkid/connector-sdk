@@ -29,6 +29,7 @@ This project incorporates components with the licenses under which Camunda recei
   * io.camunda:zeebe-client-java (Version: 8.1.0, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * io.camunda:zeebe-gateway-protocol-impl (Version: 8.1.0, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * io.camunda.connector:connector-core (Version: 0.3.0-SNAPSHOT, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
+  * io.camunda.connector:connector-runtime-util (Version: 0.3.0-SNAPSHOT, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * io.grpc:grpc-api (Version: 1.49.1, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * io.grpc:grpc-context (Version: 1.49.1, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * io.grpc:grpc-core (Version: 1.49.1, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
