@@ -17,6 +17,7 @@
   <modules>
     <module>parent</module>
     <module>core</module>
+    <module>runtime-util</module>
     <module>runtime-job-worker</module>
     <module>validation</module>
   </modules>
