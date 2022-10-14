@@ -1,7 +1,7 @@
 {
   "$schema": "https://unpkg.com/@camunda/zeebe-element-templates-json-schema/resources/schema.json",
   "name": "GitHubWebhookTemplate",
-  "id": "aba851f6-e9ef-490e-80a9-82b74529231e",
+  "id": "io.camunda.example.inbound.GitHubWebhook.v1",
   "appliesTo": [
     "bpmn:StartEvent"
   ],
@@ -30,7 +30,7 @@
     },
     {
       "type": "Hidden",
-      "value": "=headers['X-Hub-Signature']",
+      "value": "=get value(request.headers, &#34;x-hub-signature&#34;)",
       "binding": {
         "type": "zeebe:property",
         "name": "inbound.secretExtractor"
