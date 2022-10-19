@@ -44,12 +44,13 @@
 
     <dependency>
       <groupId>io.camunda</groupId>
-      <artifactId>zeebe-protocol</artifactId>
+      <artifactId>spring-zeebe-starter</artifactId>
+      <version>8.1.0</version>
     </dependency>
 
     <dependency>
       <groupId>io.camunda</groupId>
-      <artifactId>zeebe-client-java</artifactId>
+      <artifactId>zeebe-protocol</artifactId>
     </dependency>
 
     <dependency>
@@ -72,6 +73,11 @@
       <groupId>com.fasterxml.jackson.module</groupId>
       <artifactId>jackson-module-scala_2.13</artifactId>
       <version>${version.jackson-module-scala_2.13}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.camunda</groupId>
+      <artifactId>camunda-operate-client-java</artifactId>
+      <version>1.3.0</version>
     </dependency>
 
     <dependency>
