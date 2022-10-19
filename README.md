@@ -17,6 +17,49 @@ URLs:
 - Operate: `http://localhost:8081`
 - Elasticsearch: `http://localhost:9200`
 
+## Configure Connection to Zeebe and Operate
+
+The Connector can read all properties from [https://github.com/camunda-community-hub/spring-zeebe](Spring Zeebe), this is especially important to configure the connection to Zeebe.
+
+Either on localhost:
+
+`
+zeebe.client.broker.gateway-address=127.0.0.1:26500
+zeebe.client.security.plaintext=true
+`
+
+Or on Camunda SaaS:
+
+`
+zeebe.client.cloud.cluster-id=xxx
+zeebe.client.cloud.client-id=xxx
+zeebe.client.cloud.client-secret=xxx
+zeebe.client.cloud.region=bru-2
+`
+
+You can further configure the connection to Operate. 
+
+As a default, it will use the `cluster-id` and credentials configured for Zeebe, but can also configure it otherwise.
+
+Connect to Operate locally using username and password:
+`
+camunda.operate.client.url=http://localhost:8081
+camunda.operate.client.username=demo
+camunda.operate.client.password=demo
+`
+
+Set specific credentials for Operate (different than for Zeebe API):
+`
+camunda.operate.client.client-id=xxx
+camunda.operate.client.client-secret=xxx
+`
+
+When running against a self-managed environment you might also need to configure the keycloak endpoint
+`
+camunda.operate.client.keycloak-url
+camunda.operate.client.keycloak-realm
+`
+
 ## Start Inbound Connector
 
 ```bash
