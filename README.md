@@ -59,8 +59,8 @@ camunda.operate.client.client-secret=xxx
 When running against a self-managed environment you might also need to configure the keycloak endpoint
 
 ```properties
-camunda.operate.client.keycloak-url
-camunda.operate.client.keycloak-realm
+camunda.operate.client.keycloak-url=http://localhost:18080
+camunda.operate.client.keycloak-realm=camunda-platform
 ```
 
 ## Start Inbound Connector
