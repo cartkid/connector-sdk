@@ -15,11 +15,13 @@
   <description>Inbound Connector Prototype</description>
   <properties>
     <java.version>17</java.version>
-    <version.zeebe>8.1.0</version.zeebe>
+    <version.zeebe>8.1.2</version.zeebe>
+    <version.spring-zeebe>8.1.1</version.spring-zeebe>
     <version.feel-engine>1.15.1</version.feel-engine>
     <version.jackson-module-scala_2.13>2.13.3</version.jackson-module-scala_2.13>
   </properties>
 
+  <!-- Do we need this and why? -->
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -35,45 +37,34 @@
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
     <dependency>
       <groupId>io.camunda</groupId>
       <artifactId>spring-zeebe-starter</artifactId>
-      <version>8.1.0</version>
+      <version>${version.spring-zeebe}</version>
     </dependency>
 
+    <!-- Use as soon as https://github.com/camunda/connector-sdk/issues/178 is solved
     <dependency>
-      <groupId>io.camunda</groupId>
-      <artifactId>zeebe-protocol</artifactId>
+      <groupId>io.camunda.connector</groupId>
+      <artifactId>connector-runtime-util</artifactId>
+      <version>0.3.0-SNAPSHOT</version>
     </dependency>
-
-    <dependency>
-      <groupId>io.camunda</groupId>
-      <artifactId>zeebe-bpmn-model</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>io.camunda</groupId>
-      <artifactId>zeebe-exporter-api</artifactId>
-    </dependency>
+    -->
 
     <dependency>
       <groupId>org.camunda.feel</groupId>
       <artifactId>feel-engine</artifactId>
       <version>${version.feel-engine}</version>
     </dependency>
-
     <dependency>
       <groupId>com.fasterxml.jackson.module</groupId>
       <artifactId>jackson-module-scala_2.13</artifactId>
       <version>${version.jackson-module-scala_2.13}</version>
     </dependency>
+
     <dependency>
       <groupId>io.camunda</groupId>
       <artifactId>camunda-operate-client-java</artifactId>
@@ -86,14 +77,16 @@
       <scope>runtime</scope>
       <optional>true</optional>
     </dependency>
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>io.projectreactor</groupId>
-      <artifactId>reactor-test</artifactId>
+      <groupId>io.camunda</groupId>
+      <artifactId>spring-zeebe-test</artifactId>
+      <version>${version.spring-zeebe}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
