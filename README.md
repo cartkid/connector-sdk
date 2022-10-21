@@ -1,34 +1,13 @@
 # inbound-prototype
 
-A prototype of REST ("webhook") inbound connector ([ref](https://github.com/camunda/product-hub/issues/174)).
+Webhook inbound connector runtime (see https://github.com/camunda/product-hub/issues/174).
 
 
-## Start C8 Environment
+## Start Inbound Connector Runtime
 
-```bash
-docker compose up --wait
-```
+### Configure for C8 SaaS
 
-Note: you can also use Camunda SaaS instead of spinning up an environment locally
-
-URLs:
-
-- Zeebe: 'grpc://localhost:26500'
-- Operate: `http://localhost:8081`
-- Elasticsearch: `http://localhost:9200`
-
-## Configure Connection to Zeebe and Operate
-
-The Connector can read all properties from [https://github.com/camunda-community-hub/spring-zeebe](Spring Zeebe), this is especially important to configure the connection to Zeebe.
-
-Either on localhost:
-
-```properties
-zeebe.client.broker.gateway-address=127.0.0.1:26500
-zeebe.client.security.plaintext=true
-```
-
-Or on Camunda SaaS:
+You can use Camunda SaaS. Edit `src/main/application.properties` accordingly:
 
 ```properties
 zeebe.client.cloud.cluster-id=xxx
@@ -37,9 +16,7 @@ zeebe.client.cloud.client-secret=xxx
 zeebe.client.cloud.region=bru-2
 ```
 
-You can further configure the connection to Operate. 
-
-As a default, it will use the `cluster-id` and credentials configured for Zeebe, but can also configure it otherwise.
+You can further configure the connection to Operate.  As a default, it will use the `cluster-id` and credentials configured for Zeebe, but can also configure it otherwise.
 
 Connect to Operate locally using username and password:
 
@@ -56,20 +33,69 @@ camunda.operate.client.client-id=xxx
 camunda.operate.client.client-secret=xxx
 ```
 
-When running against a self-managed environment you might also need to configure the keycloak endpoint
+
+
+### Use Docker Compose
+
+```bash
+docker compose up --wait
+```
+
+URLs:
+
+- Zeebe: 'grpc://localhost:26500'
+- Operate: `http://localhost:8081`
+- Elasticsearch: `http://localhost:9200`
+
+Make sure `src/main/application.properties` is configured properly:
+
+
+```properties
+zeebe.client.broker.gateway-address=127.0.0.1:26500
+zeebe.client.security.plaintext=true
+```
+
+When running against a self-managed environment you might also need to configure the keycloak endpoint to not use Operate username/password authentication.
 
 ```properties
 camunda.operate.client.keycloak-url=http://localhost:18080
 camunda.operate.client.keycloak-realm=camunda-platform
 ```
 
-## Start Inbound Connector
+### Further Configurations
+
+The Connector can read all properties from [https://github.com/camunda-community-hub/spring-zeebe](Spring Zeebe), this is especially important to configure the connection to Zeebe.
+
+
+### Run
 
 ```bash
 mvn spring-boot:run
 ```
 
-## Deploy process
+
+## Webhook Connector Properties
+
+| Property | Required | Default value | Description |
+| :- | :- | :- | :- |
+| inbound.type | yes | | Needs to be set to `webhook` |
+| inbound.context | yes |  | Contxt path used on Webhook REST endpoint (http://endpoint/inbound/`context`/) |
+| inbound.activationCondition | yes | |
+| inbound.variableMapping | no | |    
+| **Secret Handling** |
+| inbound.secretExtractor  | yes | |
+| inbound.secret  | yes | |
+| **HMAC** |
+| inbound.shouldValidateHmac | no | `disabled` | `enabled` or `disabled` |
+| inbound.hmacSecret | no | |
+| inbound.hmacHeader | no | |
+| inbound.hmacAlgorithm | no | | `sha1`, `sha256`, or `sha512` |
+
+## Run example
+
+### Deploy process
+
+Via Modeler or zbctl:
 
 ```bash
 # working process { context=GITHUB_INBOUND }
@@ -79,7 +105,7 @@ zbctl --insecure deploy resource example/pull-request-notification.bpmn
 zbctl --insecure deploy resource example/broken.bpmn
 ```
 
-## Start a process
+### Start a process
 
 
 ```bash
