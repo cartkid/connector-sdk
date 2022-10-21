@@ -1,6 +1,6 @@
-# inbound-prototype
+# Inbound Webhook Connector Runtime
 
-Webhook inbound connector runtime (see https://github.com/camunda/product-hub/issues/174).
+see https://github.com/camunda/product-hub/issues/174
 
 
 ## Start Inbound Connector Runtime
