@@ -14,7 +14,7 @@ This project incorporates components with the licenses under which Camunda recei
   * com.google.android:annotations (Version: 4.1.1.4, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * com.google.api.grpc:proto-google-common-protos (Version: 2.9.0, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * com.google.code.findbugs:jsr305 (Version: 3.0.2, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
-  * com.google.code.gson:gson (Version: 2.9.1, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
+  * com.google.code.gson:gson (Version: 2.10, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * com.google.errorprone:error_prone_annotations (Version: 2.14.0, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * com.google.guava:failureaccess (Version: 1.0.1, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * com.google.guava:guava (Version: 31.1-jre, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
