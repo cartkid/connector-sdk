@@ -17,8 +17,12 @@
     <#return "https://opensource.org/licenses/BSD-3-Clause">
   <#elseif license == "EPL-2.0">
     <#return "https://www.eclipse.org/legal/epl-2.0/">
+  <#elseif license == "EPL-1.0">
+    <#return "https://www.eclipse.org/legal/epl-v10.html">
   <#elseif license == "GPLv2 with Classpath Exception">
     <#return "https://www.gnu.org/software/classpath/license.html">
+  <#elseif license == "GNU Lesser General Public License, Version 2.1">
+    <#return "http://www.gnu.org/licenses/lgpl-2.1.html">
   <#elseif license == "CDDLv1.0">
     <#return "https://opensource.org/licenses/CDDL-1.0">
   <#elseif license == "CDDLv1.1">
