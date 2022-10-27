@@ -160,7 +160,7 @@ jobs:
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v3
         with:
-          context: runtime-job-worker/
+          context: runtime/
           push: true
           tags: camunda/connectors:${{ github.event.inputs.version }} , camunda/connectors:latest
 
