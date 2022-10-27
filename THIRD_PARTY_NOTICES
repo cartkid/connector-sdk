@@ -5,8 +5,8 @@ Do Not Translate or Localize
 
 This project incorporates components with the licenses under which Camunda received them as listed below.
 
-  * ch.qos.logback:logback-classic (Version: 1.2.11, License: Eclipse Public License - v 1.0 (URL: no known URL), GNU Lesser General Public License (URL: no known URL))
-  * ch.qos.logback:logback-core (Version: 1.2.11, License: Eclipse Public License - v 1.0 (URL: no known URL), GNU Lesser General Public License (URL: no known URL))
+  * ch.qos.logback:logback-classic (Version: 1.2.11, License: EPL-1.0 (URL: https://www.eclipse.org/legal/epl-v10.html), GNU Lesser General Public License, Version 2.1 (URL: http://www.gnu.org/licenses/lgpl-2.1.html))
+  * ch.qos.logback:logback-core (Version: 1.2.11, License: EPL-1.0 (URL: https://www.eclipse.org/legal/epl-v10.html), GNU Lesser General Public License, Version 2.1 (URL: http://www.gnu.org/licenses/lgpl-2.1.html))
   * com.fasterxml:classmate (Version: 1.5.1, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * com.fasterxml.jackson.core:jackson-annotations (Version: 2.13.4, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * com.fasterxml.jackson.core:jackson-core (Version: 2.13.4, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
@@ -37,8 +37,8 @@ This project incorporates components with the licenses under which Camunda recei
   * commons-collections:commons-collections (Version: 3.2.2, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * commons-logging:commons-logging (Version: 1.2, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * io.camunda:camunda-operate-client-java (Version: 1.3.1, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
-  * io.camunda:spring-zeebe (Version: 8.1.2, License: Apache License (URL: no known URL))
-  * io.camunda:spring-zeebe-starter (Version: 8.1.2, License: Apache License (URL: no known URL))
+  * io.camunda:spring-zeebe (Version: 8.1.2, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
+  * io.camunda:spring-zeebe-starter (Version: 8.1.2, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * io.camunda:zeebe-bpmn-model (Version: 8.1.2, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * io.camunda:zeebe-client-java (Version: 8.1.2, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * io.camunda:zeebe-gateway-protocol-impl (Version: 8.1.2, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
@@ -66,7 +66,7 @@ This project incorporates components with the licenses under which Camunda recei
   * io.netty:netty-transport (Version: 4.1.82.Final, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * io.netty:netty-transport-native-unix-common (Version: 4.1.77.Final, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * io.perfmark:perfmark-api (Version: 0.25.0, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
-  * jakarta.annotation:jakarta.annotation-api (Version: 1.3.5, License: EPL 2.0 (URL: no known URL), GPL2 w/ CPE (URL: no known URL))
+  * jakarta.annotation:jakarta.annotation-api (Version: 1.3.5, License: EPL-2.0 (URL: https://www.eclipse.org/legal/epl-2.0/), GPLv2 with Classpath Exception (URL: https://www.gnu.org/software/classpath/license.html))
   * jakarta.validation:jakarta.validation-api (Version: 3.0.2, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * org.apache.httpcomponents.client5:httpclient5 (Version: 5.1.3, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
   * org.apache.httpcomponents.client5:httpclient5-fluent (Version: 5.1.3, License: Apache-2.0 (URL: https://opensource.org/licenses/Apache-2.0))
