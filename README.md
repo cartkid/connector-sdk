@@ -97,4 +97,8 @@ This can be done on the `main` branch as well as `stable/.x.y` maintenance branc
 
 When triggered from the `main` branch, a maintenance branch `stable/x.y` will be created based on the release version `x.y.z` that you specified.
 
-**Note**: This currently also applies for further classifiers like `x.y.z-rc1` or `x.y.z-alpha1`, i.e. a new branch `stable/x.y` will be created for that release. If the branch to create already exists, the release will fail.
+### Pre-releases
+
+If you apply further classifiers like `x.y.z-rc1` or `x.y.z-alpha1`, no maintenance branch will be created. 
+Furthermore, no commits will be pushed to the branch you release from. A tag will be created on a detached commit
+that sets the release version on top of the current HEAD of the branch.
