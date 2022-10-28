@@ -81,7 +81,7 @@ Find more details in the [validation module](./validation).
 
 ## Start a Connector
 
-Spin up your connector as a [job worker](./runtime-job-worker) or [build your own run-time](./runtime-util), tailored towards your environment.
+Spin up your connector as a [job worker](./runtime) or [build your own run-time](./runtime-util), tailored towards your environment.
 
 ## Build
 
