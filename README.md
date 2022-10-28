@@ -99,6 +99,6 @@ When triggered from the `main` branch, a maintenance branch `stable/x.y` will be
 
 ### Pre-releases
 
-If you apply further classifiers like `x.y.z-rc1` or `x.y.z-alpha1`, no maintenance branch will be created. 
+If you apply further classifiers like `x.y.z-rc1` or `x.y.z-alpha1`, no maintenance branch will be created.
 Furthermore, no commits will be pushed to the branch you release from. A tag will be created on a detached commit
 that sets the release version on top of the current HEAD of the branch.
