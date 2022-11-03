@@ -22,7 +22,7 @@ jobs:
           cache: 'maven'
 
       - name: Create notice file
-        run: mvn org.codehaus.mojo:license-maven-plugin:aggregate-add-third-party
+        run: mvn org.codehaus.mojo:license-maven-plugin:aggregate-add-third-party -Dlicense.excludedGroups=io.camunda.connector
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
