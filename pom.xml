@@ -19,6 +19,7 @@
     <module>core</module>
     <module>runtime-util</module>
     <module>validation</module>
+    <module>secret-provider/gcp-security-manager</module>
   </modules>
 
   <scm>
