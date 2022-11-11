@@ -6,7 +6,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.camunda.connector/connector-core/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/io.camunda.connector/connector-core)
 [![Connector Template](https://img.shields.io/badge/template%20repository-use-blue)](https://github.com/camunda/connector-template)
 
-The Connector SDK allows you to [develop custom Camunda 8 Connectors](https://docs.camunda.io/docs/components/integration-framework/introduction-to-connectors/#connectors) in Java.
+The Connector SDK allows you to [develop custom Camunda 8 Connectors](https://docs.camunda.io/docs/components/connectors/introduction-to-connectors/#connectors) in Java.
 
 You can focus on the logic of the Connector, test it locally, and reuse its runtime logic in multiple environments. The SDK achieves this by abstracting from Camunda Platform 8 internals that usually come with [job workers](https://docs.camunda.io/docs/components/concepts/job-workers/).
 
@@ -22,18 +22,20 @@ Head over to our [**Connector Template**](https://github.com/camunda/connector-t
 
 ## Create a Connector
 
-Include the [connector core](./core) via maven:
+Include the [connector-core](./core), e.g. via Maven:
 
 ```xml
-
 <dependency>
   <groupId>io.camunda.connector</groupId>
   <artifactId>connector-core</artifactId>
   <version>0.2.2</version>
+  <scope>provided</scope>
 </dependency>
 ```
 
-Define your connector logic through the [`OutboundConnectorFunction`](./core/src/main/java/io/camunda/connector/api/outbound/OutboundConnectorFunction.java) interface:
+Set the dependency to a `provided` scope as the runtimes that execute Connectors provide the necessary classes already.
+
+Define your Connector logic through the [`OutboundConnectorFunction`](./core/src/main/java/io/camunda/connector/api/outbound/OutboundConnectorFunction.java) interface:
 
 ```java
 
@@ -58,11 +60,7 @@ public class PingConnector implements OutboundConnectorFunction {
 }
 ```
 
-Expose your connector as an [`OutboundConnectorFunction` SPI implementation](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ServiceLoader.html).
-
-### Next steps
-
-* Add [Input validation](#connector-validation) to your Connector
+Expose your Connector as an [`OutboundConnectorFunction` SPI implementation](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ServiceLoader.html).
 
 ## Connector Validation
 
@@ -74,14 +72,17 @@ If you want to validate your Connector input, the SDK provides a default impleme
   <groupId>io.camunda.connector</groupId>
   <artifactId>connector-validation</artifactId>
   <version>0.2.2</version>
+  <scope>provided</scope>
 </dependency>
 ```
+
+Set the dependency to a `provided` scope as the runtimes that execute Connectors provide the necessary classes already.
 
 Find more details in the [validation module](./validation).
 
 ## Start a Connector
 
-Spin up your connector as a [job worker](./runtime) or [build your own run-time](./runtime-util), tailored towards your environment.
+Spin up your Connector as a job worker using [Spring Zeebe](https://github.com/camunda-community-hub/spring-zeebe#run-outboundconnectors) or [build your own run-time](./runtime-util), tailored towards your environment.
 
 ## Build
 
