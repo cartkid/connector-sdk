@@ -24,7 +24,7 @@ jobs:
         id: release-branch-name
         run: |-
           BRANCH=${GITHUB_REF#refs/heads/}
-          if [[ ${BRANCH} == stable/* ]] || [[ ${PRERELEASE} ]]; then 
+          if [[ ${BRANCH} == stable/* ]] || [[ ${PRERELEASE} == true ]]; then 
             # use the current branch name (maintenance release or alpha/rc)
             echo "::set-output name=name::${BRANCH}";
           elif [[ ${BRANCH} == "main" ]]; then
