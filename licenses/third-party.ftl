@@ -29,6 +29,8 @@
     <#return "https://spdx.org/licenses/CDDL-1.1.html">
   <#elseif license == "Bouncy Castle">
     <#return "https://www.bouncycastle.org/licence.html">
+  <#elseif license == "Go License">
+    <#return "https://go.dev/LICENSE">
   <#else>
     <#return "no known URL">
   </#if>
