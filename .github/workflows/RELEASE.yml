@@ -26,11 +26,11 @@ jobs:
           BRANCH=${GITHUB_REF#refs/heads/}
           if [[ ${BRANCH} == stable/* ]] || [[ ${PRERELEASE} == true ]]; then 
             # use the current branch name (maintenance release or alpha/rc)
-            echo "::set-output name=name::${BRANCH}";
+            echo "name=${BRANCH}" >> $GITHUB_OUTPUT
           elif [[ ${BRANCH} == "main" ]]; then
             # this is a release, derive a new maintenance branch name
             [[ $VERSION_INPUT =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)(-[a-zA-Z0-9.-]+){0,1}$ ]]
-            echo "::set-output name=name::stable/${BASH_REMATCH[1]}.${BASH_REMATCH[2]}";
+            echo "name=stable/${BASH_REMATCH[1]}.${BASH_REMATCH[2]}" >> $GITHUB_OUTPUT
           else
             # unsupported branch
             echo "Unsupported release branch ${BRANCH}. Please release from main branch or a stable/* branch" && exit 1;
