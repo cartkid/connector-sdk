@@ -7,10 +7,10 @@ on:
         description: 'Semantic version number to use in release: ^[0-9]+.[0-9]+.[0-9]+(-[a-zA-Z0-9.-]+){0,1}$'
         required: true
       prerelease:
-        description: 'This release is a pre-release'
+        description: 'This release is an alpha release, not a final one'
         required: true
         type: boolean
-        default: false
+        default: true
 
 jobs:
   prepare:
