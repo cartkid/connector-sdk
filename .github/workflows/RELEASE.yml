@@ -6,11 +6,6 @@ on:
       version:
         description: 'Semantic version number to use in release: ^[0-9]+.[0-9]+.[0-9]+(-[a-zA-Z0-9.-]+){0,1}$'
         required: true
-      prerelease:
-        description: 'This release is an alpha release, not a final one'
-        required: true
-        type: boolean
-        default: true
 
 jobs:
   prepare:
@@ -20,6 +15,16 @@ jobs:
       branch: ${{ steps.release-branch-name.outputs.name }}
 
     steps:
+      - name: Check if version implies pre-release
+        id: check_prerelease
+        run: |
+          if [[ ${{ github.event.inputs.version }} =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            PRE_RELEASE=false
+          else
+            PRE_RELEASE=true
+          fi
+          echo "isPreRelease=${PRE_RELEASE}" >> $GITHUB_OUTPUT
+
       - name: Determine release branch name
         id: release-branch-name
         run: |-
@@ -38,10 +43,10 @@ jobs:
         env:
           VERSION_INPUT: ${{ github.event.inputs.version }}
           GITHUB_REF: ${{ github.ref }}
-          PRERELEASE: ${{ github.event.inputs.prerelease }}
+          PRERELEASE: ${{ steps.check_prerelease.outputs.isPreRelease }}
       
       - name: Create maintenance branch
-        if: github.ref == 'refs/heads/main' && github.event.inputs.prerelease == 'false'
+        if: github.ref == 'refs/heads/main' && steps.check_prerelease.outputs.isPreRelease == 'false'
         uses: octokit/request-action@v2.x
         with:
           route: POST /repos/${{ github.repository }}/git/refs
@@ -147,7 +152,7 @@ jobs:
           RELEASE_VERSION: ${{ github.event.inputs.version }}
 
       - name: Set next development patch version
-        if: github.event.inputs.prerelease == 'false'
+        if: steps.check_prerelease.outputs.isPreRelease == 'false'
         run: |
           mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion}-SNAPSHOT -DgenerateBackupPoms=false -f parent
           git commit -am "ci: set next development version"
@@ -168,7 +173,7 @@ jobs:
           body: ${{ steps.changelog.outputs.changes }}
           tag_name: ${{ github.event.inputs.version }}
           target_commitish: ${{ needs.prepare.outputs.branch }}
-          prerelease: ${{ github.event.inputs.prerelease }}
+          prerelease: ${{ steps.check_prerelease.outputs.isPreRelease }}
           files: |
             **/THIRD_PARTY_NOTICES
 
@@ -176,7 +181,7 @@ jobs:
     name: Set next version on main branch
     runs-on: ubuntu-latest
     needs: [ prepare, release-and-deploy ]
-    if: github.ref == 'refs/heads/main' && github.event.inputs.prerelease == 'false'
+    if: github.ref == 'refs/heads/main' && steps.check_prerelease.outputs.isPreRelease == 'false'
     steps:
       - uses: actions/checkout@v3
 
