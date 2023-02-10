@@ -159,7 +159,7 @@ jobs:
           body: ${{ steps.changelog.outputs.changes }}
           tag_name: ${{ github.event.inputs.version }}
           target_commitish: ${{ needs.prepare.outputs.branch }}
-          prerelease: ${{ needs.prepare.output.isPreRelease }}
+          prerelease: ${{ needs.prepare.outputs.isPreRelease }}
           files: |
             **/THIRD_PARTY_NOTICES
 
@@ -167,7 +167,7 @@ jobs:
     name: Set next version on main branch
     runs-on: ubuntu-latest
     needs: [ prepare, release-and-deploy ]
-    if: github.ref == 'refs/heads/main' && needs.prepare.output.isPreRelease == 'false'
+    if: github.ref == 'refs/heads/main' && needs.prepare.outputs.isPreRelease == 'false'
     steps:
       - name: Import Secrets
         id: secrets
