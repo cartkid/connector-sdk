@@ -28,13 +28,14 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+/** Test helper class for creating an {@link InboundConnectorContext} with a fluent API. */
 public class InboundConnectorContextBuilder {
 
   protected final Map<String, String> secrets = new HashMap<>();
   protected SecretProvider secretProvider = secrets::get;
   protected InboundConnectorProperties properties;
   protected Object propertiesAsType;
-  protected InboundConnectorResult result;
+  protected InboundConnectorResult<?> result;
   protected ValidationProvider validationProvider;
 
   public static InboundConnectorContextBuilder create() {
@@ -92,6 +93,18 @@ public class InboundConnectorContextBuilder {
   }
 
   /**
+   * Provides multiple properties using a {@link InboundConnectorPropertiesBuilder}
+   *
+   * @param properties - new properties
+   * @return builder for fluent API
+   */
+  public InboundConnectorContextBuilder properties(InboundConnectorPropertiesBuilder properties) {
+    assertNoProperties();
+    this.properties = properties.build();
+    return this;
+  }
+
+  /**
    * Provides properties as object
    *
    * @param obj - properties as object
@@ -110,7 +123,7 @@ public class InboundConnectorContextBuilder {
    * @param result - correlation result
    * @return builder for fluent API
    */
-  public InboundConnectorContextBuilder correlationHandler(InboundConnectorResult result) {
+  public InboundConnectorContextBuilder correlationHandler(InboundConnectorResult<?> result) {
     this.result = result;
     return this;
   }
@@ -141,7 +154,7 @@ public class InboundConnectorContextBuilder {
 
   private InboundConnectorProperties getGenericProperties() {
     return new InboundConnectorProperties(
-        new MessageCorrelationPoint("msgName", "=body.corrKey"),
+        new MessageCorrelationPoint("msgName"),
         new HashMap<>(),
         UUID.randomUUID().toString(),
         0,
@@ -156,8 +169,13 @@ public class InboundConnectorContextBuilder {
     }
 
     @Override
-    public InboundConnectorResult correlate(Object variables) {
+    public InboundConnectorResult<?> correlate(Object variables) {
       return result;
+    }
+
+    @Override
+    public void cancel(Throwable exception) {
+      // do nothing
     }
 
     @Override
