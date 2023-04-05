@@ -207,7 +207,7 @@ jobs:
         run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.nextMinorVersion}.0-SNAPSHOT -DgenerateBackupPoms=false -f parent          
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           branch: bump-to-next-minor
           delete-branch: true
