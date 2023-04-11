@@ -15,6 +15,8 @@ Head over to our [**Connector Template**](https://github.com/camunda/connector-t
 ## Contents
 
 * [Create a Connector](#create-a-connector)
+  * [Outbound Connector](#outbound-connector)
+  * [Inbound Connector](#inbound-connector)
 * [Connector Validation](#connector-validation)
 * [Start a Connector](#start-a-connector)
 * [Build](#build)
@@ -28,12 +30,14 @@ Include the [connector-core](./core), e.g. via Maven:
 <dependency>
   <groupId>io.camunda.connector</groupId>
   <artifactId>connector-core</artifactId>
-  <version>0.2.2</version>
+  <version>0.8.0</version>
   <scope>provided</scope>
 </dependency>
 ```
 
 Set the dependency to a `provided` scope as the runtimes that execute Connectors provide the necessary classes already.
+
+### Outbound Connector
 
 Define your Connector logic through the [`OutboundConnectorFunction`](./core/src/main/java/io/camunda/connector/api/outbound/OutboundConnectorFunction.java) interface:
 
@@ -60,7 +64,47 @@ public class PingConnector implements OutboundConnectorFunction {
 }
 ```
 
-Expose your Connector as an [`OutboundConnectorFunction` SPI implementation](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ServiceLoader.html).
+### Inbound Connector
+
+Define your Connector logic through the [`InboundConnectorExecutable`](./core/src/main/java/io/camunda/connector/api/inbound/InboundConnectorExecutable.java) interface:
+```java
+@InboundConnector(
+    name = "SUBSCRIPTION",
+    type = "io.camunda.example.SubscriptionConnector:1"
+)
+public class SubscriptionConnector implements InboundConnectorExecutable {
+
+  private MockSubscription subscription; // imitates some real-world subscription
+
+  @Override
+  public void activate(InboundConnectorContext context) throws Exception {
+
+    var properties = context.getPropertiesAsType(SubscriptionProperties.class);
+
+    context.replaceSecrets(properties);
+    context.validate(properties);
+
+    // subscribe to events
+    subscription = new MockSubscription(properties.getTopic());
+    subscription.subscribe(event -> {
+      context.correlate(event);
+    });
+  }
+
+  @Override
+  public void deactivate() throws Exception {
+    // unsubscribe from events
+    subscription.shutdown();
+  }
+}
+```
+
+### Connector Discovery
+
+The SDK provides a default implementation for Connector discovery using [Java ServiceLoader](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ServiceLoader.html) with the [connector-runtime-util](./runtime-util) module.
+
+To make your Connector discoverable, expose the `OutboundConnectorFunction` or `InboundConnectorExecutable` implementation as an SPI implementation.
+Alternatively, you can use the [manual discovery mechanism](https://docs.camunda.io/docs/self-managed/connectors-deployment/connectors-configuration/#manual-discovery-of-connectors) via properties.
 
 ## Connector Validation
 
@@ -71,7 +115,7 @@ If you want to validate your Connector input, the SDK provides a default impleme
 <dependency>
   <groupId>io.camunda.connector</groupId>
   <artifactId>connector-validation</artifactId>
-  <version>0.2.2</version>
+  <version>0.8.0</version>
   <scope>provided</scope>
 </dependency>
 ```
@@ -82,7 +126,8 @@ Find more details in the [validation module](./validation).
 
 ## Start a Connector
 
-Spin up your Connector as a job worker using [Spring Zeebe](https://github.com/camunda-community-hub/spring-zeebe#run-outboundconnectors) or [build your own run-time](./runtime-util), tailored towards your environment.
+[Spring Zeebe](https://github.com/camunda-community-hub/spring-zeebe#run-outboundconnectors) Connector runtime supports running outbound Connectors as job workers and manages the lifecycle of the inbound Connectors.
+You can also [build your own runtime](./runtime-util), tailored towards your environment.
 
 ## Build
 
