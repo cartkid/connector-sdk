@@ -10,7 +10,9 @@ The Connector SDK allows you to [develop custom Camunda 8 Connectors](https://do
 
 You can focus on the logic of the Connector, test it locally, and reuse its runtime logic in multiple environments. The SDK achieves this by abstracting from Camunda Platform 8 internals that usually come with [job workers](https://docs.camunda.io/docs/components/concepts/job-workers/).
 
-Head over to our [**Connector Template**](https://github.com/camunda/connector-template) for a head start.
+Head over to our **template repositories** for a head start:
+* [Outbound Connector Template](https://github.com/camunda/connector-template)
+* [Inbound Connector Template](https://github.com/camunda/connector-template-inbound)
 
 ## Contents
 
